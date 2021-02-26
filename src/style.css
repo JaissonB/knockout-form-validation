@@ -1,0 +1,8 @@
+.container-back {
+    margin:auto;
+}
+
+.validationMessage {
+	font-size: 12px;
+	color: red;
+}
