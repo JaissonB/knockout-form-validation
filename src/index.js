@@ -1,117 +1,196 @@
-//import api from '../api/api.js'
-//import css from "style.css"
-
-// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
 document.querySelector("#validationCustom01").focus();
+
 function AppViewModel() {
 	var self = this;
 
-	//var myViewModel = ko.validatedObservable({
-    self.nome = ko.observable("").extend({
-    	validation: {
-    		message: "Preencha com um nome válido!",
-    		validator: function(value) {
-    			return value.length>1
-    		}
-    	}, required: true
+    self.nome = ko.observable().extend({
+    	pattern: {
+    		params: "^[A-Z a-z À-ú]+$",
+    		message: "O campo Nome não deve conter caracteres especiais e/ou números!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Nome deve conter {0} ou mais letras!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Nome é obrigatório!"
+    	}
     })
 
-    self.sobrenome = ko.observable("").extend({
-    	validation: {
-    		message: "Preencha com um sobrenome válido!",
-    		validator: function(value) {
-    			return value.length>1
-    		}
-    	}, required: true
+    self.sobrenome = ko.observable().extend({
+    	pattern: {
+    		params: "^[A-Z a-z À-ú]+$",
+    		message: "O campo Sobrenome não deve conter caracteres especiais e/ou números!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Sobrenome deve conter {0} ou mais letras!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Sobrenome é obrigatório!"
+    	}
     })
 
-    self.ddd = ko.observable("");
-
-    self.telefone = ko.observable("").extend({
-    	validation: {
-    		message: "Preencha com um telefone válido!",
-    		validator: function(value) {
-    			return value.length==9
-    		}
-    	}, required: true
+    self.ddd = ko.observable().extend({
+    	pattern: {
+    		params: "^[0-9]+$",
+    		message: "O campo DDD não deve conter caracteres especiais e/ou letras!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo DDD deve conter {0} dígitos!"
+    	},
+    	maxLength: {
+    		params: 2,
+    		message: "O campo DDD deve conter {0} dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo DDD é obrigatório!"
+    	}
     })
 
-    self.cep = ko.observable("").extend({
-		validation:{
-			message: "Preencha com um cep válido!",
-			validator: function(value) {
-				return value.length==8
-			}
-		}, required: true
+    self.telefone = ko.observable().extend({
+    	pattern: {
+    		params: "^[0-9]+$",
+    		message: "O campo Telefone não deve conter caracteres especiais e/ou letras!",
+    	},
+    	minLength: {
+    		params: 9,
+    		message: "O campo Telefone deve conter {0} dígitos!"
+    	},
+    	maxLength: {
+    		params: 9,
+    		message: "O campo Telefone deve conter {0} dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Telefone é obrigatório!"
+    	}
+    })
+
+    self.cep = ko.observable().extend({
+		pattern: {
+    		params: "^[0-9]+$",
+    		message: "O campo Cep não deve conter caracteres especiais e/ou letras!",
+    	},
+    	minLength: {
+    		params: 8,
+    		message: "O campo Cep deve conter {0} dígitos!"
+    	},
+    	maxLength: {
+    		params: 8,
+    		message: "O campo Cep deve conter {0} dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "Cep inválido!"
+    	}
+    })
+	
+
+    self.endereco = ko.observable().extend({ 
+    	pattern: {
+    		params: "^[A-Z a-z À-ú 0-9]+$",
+    		message: "O campo Endereço não deve conter caracteres especiais!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Endereço deve conter {0} ou mais letras!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Endereço é obrigatório!"
+    	}
 	})
 
-    self.endereco = ko.observable("").extend({ 
-    	validation:{
-    		message: "Preencha com um endereço válido!",
-    		validator: function(value) {
-    			return value.length>0
-    		}
-		}, required: true
+    self.numero = ko.observable().extend({ 
+    	pattern: {
+    		params: "^[A-Z a-z 0-9]+$",
+    		message: "O campo Número da Residência não deve conter caracteres especiais!",
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Número é obrigatório!"
+    	}
 	})
 
-    self.numero = ko.observable("").extend({ 
-    	validation:{
-    		message: "Preencha com um número válido!",
-    		validator: function(value) {
-    			return value.length>0
-    		}
-		}, required: true
-	})
-
-    self.complemento = ko.observable(""),
+    self.complemento = ko.observable()
 
     self.bairro = ko.observable("").extend({ 
-    	validation:{
-    		message: "Preencha com um bairro válido!",
-    		validator: function(value) {
-    			return value.length>0
-    		}
-		}, required: true
+    	pattern: {
+    		params: "^[A-Z a-z À-ú]+$",
+    		message: "O campo Bairro não deve conter caracteres especiais e/ou números!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Bairro deve conter {0} ou mais dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Bairro é obrigatório!"
+    	}
+	})
+
+    self.numero = ko.observable().extend({ 
+    	pattern: {
+    		params: "^[A-Z a-z 0-9]+$",
+    		message: "O campo Número da Residência não deve conter caracteres especiais!",
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Número da Residência é obrigatório!"
+    	}
 	})
 
 
-    self.cidade = ko.observable("").extend({ 
-    	validation:{
-    		message: "Preencha com uma cidade válida!",
-    		validator: function(value) {
-    			return value.length>0
-    		}
-		}, required: true
+    self.cidade = ko.observable().extend({ 
+    	pattern: {
+    		params: "^[A-Z a-z À-ú]+$",
+    		message: "O campo Cidade não deve conter caracteres especiais e/ou números!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Cidade deve conter {0} ou mais dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Cidade é obrigatório!"
+    	}
 	})
     
     self.estado = ko.observable("").extend({ 
-    	validation:{
-    		message: "Preencha com um estado válido!",
-    		validator: function(value) {
-    			return value.length>0
-    		}
-		}, required: true
+    	pattern: {
+    		params: "^[A-Z a-z]+$",
+    		message: "O campo Estado não deve conter caracteres especiais e/ou números!",
+    	},
+    	minLength: {
+    		params: 2,
+    		message: "O campo Estado deve conter {0} dígitos!"
+    	},
+    	maxLength: {
+    		params: 2,
+    		message: "O campo Estado deve conter {0} dígitos!"
+    	},
+    	required: {
+    		params: true,
+    		message: "O campo Estado é obrigatório!"
+    	}
 	})
-    //})
-
-
+    
 
 	self.btnValida = function(){
 
-		self.errosBtnValida = ko.validation.group([self.nome, self.sobrenome, self.telefone, self.ddd, self.cep])
-		console.log(self.errosBtnValida().length)
-		
-		if(self.errosBtnValida().length !== 0){
-			self.errosBtnValida.showAllMessages()
-			return;
-		}
 
 		getCep(self.cep()).then((result) => {
-			if(result.erro == true){
-				console.log("CEP NÂO EXISTE")
+			if(result.erro==true){ 
+				self.cep("");
+				return;
 			}
+
 			var bairro = document.querySelector('#validationCustom07');
-			var ddd = document.querySelector('#validationCustom13');
 			var cidade = document.querySelector('#validationCustom04');
 			var endereco = document.querySelector('#validationCustom09');
 			var estado = document.querySelector('#validationCustom05');
@@ -150,27 +229,44 @@ function AppViewModel() {
 				self.estado("");
 			}
 
-		}
-		//console.log(myViewModel.isValid())
-
-	)}
-
-		//ESTUDARR CASO
-	var btnSubmit = document.querySelector('#btnSubmit');
-	if(self.nome==""){
-		btnSubmit.disabled = false;
+		})
+		
 	}
 
+	self.formulario =  function(element) {
+		var objeto = {
+			firstName: self.nome(),
+  			lastName: self.sobrenome(),
+  			phone: self.telefone(),
+  			cep: self.cep(),
+  			address: self.endereco(),
+  			number: self.numero(),
+  			complement: self.complemento(),
+  			district: self.bairro(),
+  			city: self.cidade(),
+  			state: self.estado()
+		}
+		console.log(objeto)
+	}
+
+
 }
-
-
 
 const appViewModel = new AppViewModel()
 
 // can be used in the navigation console
 window.appViewModel = appViewModel
 
+var btnSubmit = document.querySelector('#btnSubmit');
+
+appViewModel.erros = ko.validation.group(appViewModel)
+appViewModel.erros.isEmpty = ko.computed(function() {
+	return appViewModel.erros().length == 0
+})
+
 // Activates knockout.js
 ko.applyBindings(appViewModel)
+
+
 
 

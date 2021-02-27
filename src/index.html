@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
     <title>Form Knockout</title>
     <meta charset="UTF-8">
     <meta name="description" content="Knockout Form">
@@ -14,48 +15,36 @@
 
 <body>
     <div class="container-back col-md-4">
-        <form class="needs-validation col-md-12" novalidate>
+        <form data-bind="submit: formulario" class="needs-validation col-md-12" novalidate>
             <div class="form-row">
                 <div class="col-md-6 mb-6">
                     <label for="validationCustom01">Nome</label>
-                    <input data-bind="value: nome" type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
-                    <div class="invalid-feedback">
-                        O campo Nome é obrigatório!
-                    </div>
+                    <input data-bind="value: nome" type="text" class="form-control" id="validationCustom01" placeholder="Insira seu nome..." required>
+                    <div></div>
                 </div>
                 <div class="col-md-6 mb-6">
                     <label for="validationCustom02">Sobrenome</label>
-                    <input data-bind="value: sobrenome" type="text" class="form-control" id="validationCustom02" placeholder="Sobrenome" value=""
-                        required>
-                    <div class="invalid-feedback">
-                        O campo Sobrenome é obrigatório!
-                    </div>
+                    <input data-bind="value: sobrenome" type="text" class="form-control" id="validationCustom02" placeholder="Insira seu sobrenome..." value="" required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-2 mb-2">
                     <label for="validationCustom13">DDD</label>
-                    <input data-bind="value: ddd" type="text" class="form-control" id="validationCustom13" placeholder="DDD" value="" required>
-                    <div class="invalid-feedback">
-                        O campo DDD é obrigatório!
-                    </div>
+                    <input data-bind="value: ddd" type="text" class="form-control" id="validationCustom13" placeholder="Insira seu DDD..." value="" required>
+                    <div></div>
                 </div>
                 <div class="col-md-10 mb-10">
                     <label for="validationCustom03">Telefone</label>
-                    <input data-bind="value: telefone" type="text" class="form-control" id="validationCustom03" placeholder="Telefone" value=""
-                        required>
-                    <div class="invalid-feedback">
-                        O campo Telefone é obrigatório!
-                    </div>
+                    <input data-bind="value: telefone" type="text" class="form-control" id="validationCustom03" placeholder="Insira seu telefone..." value="" required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-8 mb-8">
                     <label for="validationCustom06">Cep</label>
-                    <input data-bind="value: cep" type="number" class="form-control" id="validationCustom06" placeholder="Cep" required>
-                    <div class="invalid-feedback">
-                        O campo cep é obrigatório!
-                    </div>
+                    <input data-bind="value: cep" type="number" class="form-control" id="validationCustom06" placeholder="Insira seu cep..." required>
+                    <div></div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="validationCustom10" style="color:#fff">CEP</label>
@@ -65,56 +54,48 @@
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom09">Endereço</label>
-                    <input data-bind="value: endereco" type="text" class="form-control" id="validationCustom09" placeholder="Endereço" required>
-                    <div class="invalid-feedback">
-                        O campo endereço é obrigatório!
-                    </div>
+                    <input data-bind="value: endereco" type="text" class="form-control" id="validationCustom09" placeholder="Insira seu endereço..." required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom08">Número da Residência</label>
-                    <input data-bind="value: numero" type="text" class="form-control" id="validationCustom08" placeholder="Numero" required>
-                    <div class="invalid-feedback">
-                        O campo número da residência é obrigatório!
-                    </div>
+                    <input data-bind="value: numero" type="text" class="form-control" id="validationCustom08" placeholder="Insira seu número residencial..." required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom11">Complemento (opcional)</label>
-                    <input data-bind="value: complemento" type="text" class="form-control" id="validationCustom011" placeholder="Complemento">
+                    <input data-bind="value: complemento" type="text" class="form-control" id="validationCustom011" placeholder="Insira um complemento...">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom07">Bairro</label>
-                    <input data-bind="value: bairro" type="text" class="form-control" id="validationCustom07" placeholder="Bairro" required>
-                    <div class="invalid-feedback">
-                        O campo bairro é obrigatório!
-                    </div>
+                    <input data-bind="value: bairro" type="text" class="form-control" id="validationCustom07" placeholder="Insira seu bairro..." required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom04">Cidade</label>
-                    <input data-bind="value: cidade" type="text" class="form-control" id="validationCustom04" placeholder="Cidade" required>
-                    <div class="invalid-feedback">
-                        O campo cidade é obrigatório!
-                    </div>
+                    <input data-bind="value: cidade" type="text" class="form-control" id="validationCustom04" placeholder="Insira sua cidade..." required>
+                    <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom05">Estado</label>
-                    <input data-bind="value: estado" type="text" class="form-control" id="validationCustom05" placeholder="Estado" required>
-                    <div class="invalid-feedback">
-                        O campo estado é obrigatório!
-                    </div>
+                    <input data-bind="value: estado" type="text" class="form-control" id="validationCustom05" placeholder="Insira seu estado..." required>
+                    <div></div>
                 </div>
             </div>
             <br />
-            <button id="btnSubmit" class="btn btn-primary" disabled type="submit">Enviar Formulário</button>
+
+            <button id="btnSubmit" data-bind="enable: erros.isEmpty()" class="btn btn-primary" disabled type="submit">Enviar Formulário</button>
+
         </form>
     </div>
 
@@ -122,7 +103,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.4/knockout.validation.js"></script>
     <script src="../api/api.js"></script>
     <script src="index.js"></script>
-    
 </body>
 
 </html>
