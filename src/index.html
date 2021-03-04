@@ -54,7 +54,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom09">Endereço</label>
-                    <input data-bind="value: endereco" type="text" class="form-control" id="validationCustom09" placeholder="Insira seu endereço..." required>
+                    <input data-bind="value: endereco, disabled: endereco.isValid()" type="text" class="form-control" id="validationCustom09" placeholder="Insira seu endereço..." required>
                     <div></div>
                 </div>
             </div>
@@ -74,21 +74,21 @@
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom07">Bairro</label>
-                    <input data-bind="value: bairro" type="text" class="form-control" id="validationCustom07" placeholder="Insira seu bairro..." required>
+                    <input data-bind="value: bairro, disabled: bairro.isValid()" type="text" class="form-control" id="validationCustom07" placeholder="Insira seu bairro..." required>
                     <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom04">Cidade</label>
-                    <input data-bind="value: cidade" type="text" class="form-control" id="validationCustom04" placeholder="Insira sua cidade..." required>
+                    <input data-bind="value: cidade, disabled: cidade.isValid()" type="text" class="form-control" id="validationCustom04" placeholder="Insira sua cidade..." required>
                     <div></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-12">
                     <label for="validationCustom05">Estado</label>
-                    <input data-bind="value: estado" type="text" class="form-control" id="validationCustom05" placeholder="Insira seu estado..." required>
+                    <input data-bind="value: estado, disabled: estado.isValid()" type="text" class="form-control" id="validationCustom05" placeholder="Insira seu estado..." required>
                     <div></div>
                 </div>
             </div>

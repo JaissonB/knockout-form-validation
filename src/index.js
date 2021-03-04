@@ -3,7 +3,10 @@ document.querySelector("#validationCustom01").focus();
 function AppViewModel() {
 	var self = this;
 
-    self.nome = ko.observable().extend({
+	//poderia ter sido usada a validação em pt-BR de acordo com o site
+	//https://github.com/Knockout-Contrib/Knockout-Validation/blob/master/localization/pt-BR.js
+
+    this.nome = ko.observable().extend({
     	pattern: {
     		params: "^[A-Z a-z À-ú]+$",
     		message: "O campo Nome não deve conter caracteres especiais e/ou números!",
@@ -18,7 +21,7 @@ function AppViewModel() {
     	}
     })
 
-    self.sobrenome = ko.observable().extend({
+    this.sobrenome = ko.observable().extend({
     	pattern: {
     		params: "^[A-Z a-z À-ú]+$",
     		message: "O campo Sobrenome não deve conter caracteres especiais e/ou números!",
@@ -33,7 +36,7 @@ function AppViewModel() {
     	}
     })
 
-    self.ddd = ko.observable().extend({
+    this.ddd = ko.observable().extend({
     	pattern: {
     		params: "^[0-9]+$",
     		message: "O campo DDD não deve conter caracteres especiais e/ou letras!",
@@ -52,7 +55,7 @@ function AppViewModel() {
     	}
     })
 
-    self.telefone = ko.observable().extend({
+    this.telefone = ko.observable().extend({
     	pattern: {
     		params: "^[0-9]+$",
     		message: "O campo Telefone não deve conter caracteres especiais e/ou letras!",
@@ -71,7 +74,7 @@ function AppViewModel() {
     	}
     })
 
-    self.cep = ko.observable().extend({
+    this.cep = ko.observable().extend({
 		pattern: {
     		params: "^[0-9]+$",
     		message: "O campo Cep não deve conter caracteres especiais e/ou letras!",
@@ -91,7 +94,7 @@ function AppViewModel() {
     })
 	
 
-    self.endereco = ko.observable().extend({ 
+    this.endereco = ko.observable().extend({ 
     	pattern: {
     		params: "^[A-Z a-z À-ú 0-9]+$",
     		message: "O campo Endereço não deve conter caracteres especiais!",
@@ -106,7 +109,7 @@ function AppViewModel() {
     	}
 	})
 
-    self.numero = ko.observable().extend({ 
+    this.numero = ko.observable().extend({ 
     	pattern: {
     		params: "^[A-Z a-z 0-9]+$",
     		message: "O campo Número da Residência não deve conter caracteres especiais!",
@@ -117,9 +120,9 @@ function AppViewModel() {
     	}
 	})
 
-    self.complemento = ko.observable()
+    this.complemento = ko.observable()
 
-    self.bairro = ko.observable("").extend({ 
+    this.bairro = ko.observable("").extend({ 
     	pattern: {
     		params: "^[A-Z a-z À-ú]+$",
     		message: "O campo Bairro não deve conter caracteres especiais e/ou números!",
@@ -134,7 +137,7 @@ function AppViewModel() {
     	}
 	})
 
-    self.numero = ko.observable().extend({ 
+    this.numero = ko.observable().extend({ 
     	pattern: {
     		params: "^[A-Z a-z 0-9]+$",
     		message: "O campo Número da Residência não deve conter caracteres especiais!",
@@ -146,7 +149,7 @@ function AppViewModel() {
 	})
 
 
-    self.cidade = ko.observable().extend({ 
+    this.cidade = ko.observable().extend({ 
     	pattern: {
     		params: "^[A-Z a-z À-ú]+$",
     		message: "O campo Cidade não deve conter caracteres especiais e/ou números!",
@@ -161,7 +164,7 @@ function AppViewModel() {
     	}
 	})
     
-    self.estado = ko.observable("").extend({ 
+    this.estado = ko.observable("").extend({ 
     	pattern: {
     		params: "^[A-Z a-z]+$",
     		message: "O campo Estado não deve conter caracteres especiais e/ou números!",
@@ -179,10 +182,8 @@ function AppViewModel() {
     		message: "O campo Estado é obrigatório!"
     	}
 	})
-    
 
-	self.btnValida = function(){
-
+	this.btnValida = function(){
 
 		getCep(self.cep()).then((result) => {
 			if(result.erro==true){ 
@@ -194,53 +195,34 @@ function AppViewModel() {
 			var cidade = document.querySelector('#validationCustom04');
 			var endereco = document.querySelector('#validationCustom09');
 			var estado = document.querySelector('#validationCustom05');
-			
-			if(result.bairro !== ""){
-				self.bairro(result.bairro);
-				bairro.disabled = true;
-			}else{
-				bairro.disabled = false;
-				self.bairro("");
-			}
+
+			self.bairro(result.bairro);
+			bairro.disabled = self.bairro.isValid();
 
 			self.complemento(result.complemento)
 
-			if(result.localidade !== ""){
-				self.cidade(result.localidade);
-				cidade.disabled = true;
-			}else{
-				cidade.disabled = false;
-				self.cidade("");
-			}
+			self.cidade(result.localidade);
+			cidade.disabled = self.cidade.isValid();
 
-			if(result.logradouro !== ""){
-				self.endereco(result.logradouro);
-				endereco.disabled = true;
-			}else{
-				endereco.disabled = false;
-				self.endereco("");
-			}
+			self.endereco(result.logradouro);
+			endereco.disabled = self.endereco.isValid();
 
-			if(result.uf !== ""){
-				self.estado(result.uf)
-				estado.disabled = true;
-			}else{
-				estado.disabled = false;
-				self.estado("");
-			}
+			self.estado(result.uf);
+			estado.disabled = self.estado.isValid();
 
 		})
 		
 	}
-
+	
+	//conferir cep novamente antes de enviar formulario
 	self.formulario =  function(element) {
 		var objeto = {
 			firstName: self.nome(),
   			lastName: self.sobrenome(),
-  			phone: self.telefone(),
-  			cep: self.cep(),
+  			phone: self.ddd() + self.telefone(),
+  			cep: parseInt(self.cep()),
   			address: self.endereco(),
-  			number: self.numero(),
+  			number: parseInt(self.numero()),
   			complement: self.complemento(),
   			district: self.bairro(),
   			city: self.cidade(),
@@ -248,7 +230,6 @@ function AppViewModel() {
 		}
 		console.log(objeto)
 	}
-
 
 }
 
